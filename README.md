@@ -1,6 +1,7 @@
 # User Management System
 
 A modern, professional user management application built with React, TypeScript, and Material-UI for the OBS Frontend Assessment.
+🔗 **Live Demo:** https://obs-frontend-assignment-sepia.vercel.app/
 
 ## Application Description
 
