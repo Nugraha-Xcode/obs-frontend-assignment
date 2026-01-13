@@ -7,5 +7,14 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/tests/setup.ts',
+    isolate: false,
+    fileParallelism: false,
+    testTimeout: 10000,
+    include: ['src/tests/**/*.test.tsx'],
+    server: {
+      deps: {
+        inline: ['@mui/material', '@mui/icons-material'],
+      },
+    },
   },
 });
