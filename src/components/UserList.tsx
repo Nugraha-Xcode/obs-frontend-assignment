@@ -351,7 +351,15 @@ export const UserList = () => {
               sx={{ fontWeight: 600 }}
             />
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: { xs: 1, sm: 2 },
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              justifyContent: { xs: 'center', sm: 'flex-start' },
+            }}
+          >
             <ToggleButtonGroup
               value={viewMode}
               exclusive
@@ -359,10 +367,11 @@ export const UserList = () => {
               size="small"
               sx={{
                 '& .MuiToggleButton-root': {
-                  px: 2,
-                  py: 1,
+                  px: { xs: 1.5, sm: 2 },
+                  py: { xs: 0.5, sm: 1 },
                   textTransform: 'none',
                   fontWeight: 600,
+                  fontSize: { xs: '0.75rem', sm: '0.875rem' },
                   border: '1px solid',
                   borderColor: 'divider',
                   '&.Mui-selected': {
@@ -376,19 +385,69 @@ export const UserList = () => {
               }}
             >
               <ToggleButton value="list" aria-label="list view">
-                <ViewListIcon sx={{ mr: 0.5 }} fontSize="small" />
-                List
+                <ViewListIcon
+                  sx={{ mr: { xs: 0, sm: 0.5 } }}
+                  fontSize="small"
+                />
+                <Box
+                  component="span"
+                  sx={{ display: { xs: 'none', sm: 'inline' } }}
+                >
+                  List
+                </Box>
               </ToggleButton>
               <ToggleButton value="grid" aria-label="grid view">
-                <GridViewIcon sx={{ mr: 0.5 }} fontSize="small" />
-                Grid
+                <GridViewIcon
+                  sx={{ mr: { xs: 0, sm: 0.5 } }}
+                  fontSize="small"
+                />
+                <Box
+                  component="span"
+                  sx={{ display: { xs: 'none', sm: 'inline' } }}
+                >
+                  Grid
+                </Box>
               </ToggleButton>
             </ToggleButtonGroup>
+            <IconButton
+              onClick={handleOpenFilter}
+              sx={{
+                display: { xs: 'flex', sm: 'none' },
+                border: '1px solid',
+                borderColor: activeFilterCount ? 'primary.main' : 'divider',
+                color: activeFilterCount ? 'primary.main' : 'text.secondary',
+                position: 'relative',
+              }}
+              size="small"
+            >
+              <FilterListIcon fontSize="small" />
+              {activeFilterCount > 0 && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: -4,
+                    right: -4,
+                    width: 16,
+                    height: 16,
+                    borderRadius: '50%',
+                    bgcolor: 'primary.main',
+                    color: 'white',
+                    fontSize: '0.65rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {activeFilterCount}
+                </Box>
+              )}
+            </IconButton>
             <Button
               variant="outlined"
               startIcon={<FilterListIcon />}
               onClick={handleOpenFilter}
               sx={{
+                display: { xs: 'none', sm: 'flex' },
                 textTransform: 'none',
                 fontWeight: 600,
                 px: 2,
@@ -400,20 +459,32 @@ export const UserList = () => {
             </Button>
             <Button
               variant="contained"
-              startIcon={<AddIcon />}
+              startIcon={<AddIcon sx={{ display: { xs: 'none', sm: 'block' } }} />}
               onClick={() => openModal('add')}
               sx={{
                 textTransform: 'none',
                 fontWeight: 600,
-                px: 3,
-                py: 1,
+                px: { xs: 2, sm: 3 },
+                py: { xs: 0.5, sm: 1 },
+                fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                minWidth: { xs: 'auto', sm: '120px' },
                 boxShadow: 2,
                 '&:hover': {
                   boxShadow: 4,
                 },
               }}
             >
-              Add User
+              <AddIcon
+                sx={{ display: { xs: 'block', sm: 'none' }, mr: 0.5 }}
+                fontSize="small"
+              />
+              Add
+              <Box
+                component="span"
+                sx={{ display: { xs: 'none', sm: 'inline' }, ml: 0.5 }}
+              >
+                User
+              </Box>
             </Button>
           </Box>
         </Box>
